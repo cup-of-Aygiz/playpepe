@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   var _pers = "Pers";
 
   Duration _animationDuration = AppAnimation.animationDuration;
-
+  TextStyle _styleText = AppText.textStyle;
   void _damage(TapDownDetails details) {
     setState(() {
       _bossDamage += _damagePlayer;
@@ -36,20 +36,14 @@ class _HomePageState extends State<HomePage> {
       body: GestureDetector(
         onTapDown: (TapDownDetails details) => _damage(details),
 
-        /// TODO: refactor [Stack] to [Column]
-        child: Stack(
+        /// TODO: refactor [Stack] to [Column] ✓
+        child: Column(
           children: [
             Container(
-              alignment: Alignment(0, -0.6),
+              alignment: Alignment.center,
               child: Text(
                 '$_bossDamage',
-
-                /// TODO: move this text styles
-                style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  color: Colors.deepPurple,
-                  fontSize: 20,
-                ),
+                style: _styleText,
               ),
               color: Colors.blue,
             ),
