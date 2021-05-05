@@ -20,13 +20,13 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _bossDamage += _damagePlayer;
       _pers = _pers == "assets/gameimage/player/Pers.png"
-          ? "assets/gameimage/player/Persattack.png"
+          ? "assets/gameimage/player/boss.png"
           : "assets/gameimage/player/Pers.png";
     });
     Future.delayed(const Duration(milliseconds: 50), () {
       setState(() {
         _pers = _pers == "assets/gameimage/player/Pers.png"
-            ? "assets/gameimage/player/Persattack.png"
+            ? "assets/gameimage/player/boss.png"
             : "assets/gameimage/player/Pers.png";
       });
     });
