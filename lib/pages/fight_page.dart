@@ -49,11 +49,13 @@ class _FightPageState extends State<FightPage> {
                 '$_bossDamage',
                 style: _styleText,
               ),
-              color: Colors.blue,
+            ),
+            Container(
+              height: 200,
             ),
             Container(
               height: AppSize.heroSizeBig,
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment(0,0),
               child: AnimatedContainer(
                 height:
                     _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
