@@ -16,12 +16,14 @@ class _HomePageState extends State<HomePage> {
   double _damagePlayer = 1;
   var _pers = "Pers";
 
+  Duration _animationDuration = const Duration(milliseconds: 300);
+
   void _damage(TapDownDetails details) {
     setState(() {
       _bossDamage += _damagePlayer;
       _pers = _pers == "Pers" ? "boss" : "Pers";
     });
-    Future.delayed(const Duration(milliseconds: 50), () {
+    Future.delayed(_animationDuration, () {
       setState(() {
         _pers = _pers == "Pers" ? "boss" : "Pers";
       });
@@ -56,9 +58,10 @@ class _HomePageState extends State<HomePage> {
               bottom: 0,
               left: 0,
               right: 0,
-              child: Container(
-                height: 100,
+              child: AnimatedContainer(
+                height: _pers == "Pers" ? 100 : 120,
                 width: 100,
+                duration: _animationDuration,
                 child: Image.asset("assets/gameimage/player/$_pers.png"),
               ),
             ),
