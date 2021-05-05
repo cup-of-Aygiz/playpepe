@@ -13,6 +13,7 @@ class _UpdetPageState extends State<UpdetPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Container(height: MediaQuery.of(context).padding.top,),
         Center(
           child: Text(
             "111",

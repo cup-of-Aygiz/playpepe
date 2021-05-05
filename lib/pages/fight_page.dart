@@ -32,31 +32,43 @@ class _FightPageState extends State<FightPage> {
       onTapDown: (TapDownDetails details) => _damage(details),
 
       /// TODO: refactor [Stack] to [Column] ✓
-      child: Column(
-        children: [
-          Container(
-            alignment: Alignment.center,
-            child: Text(
-              '$_bossDamage',
-              style: _styleText,
+      child: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage("assets/gameimage/player/boss.png"),),
+        ),
+        child: Column(
+          children: [
+            Container(height: MediaQuery.of(context).padding.top,),
+            Container(
+              alignment: Alignment.center,
+              child: Text(
+                '$_bossDamage',
+                style: _styleText,
+              ),
+              color: Colors.blue,
             ),
-            color: Colors.blue,
-          ),
-          Center(
-            child: Image.asset("assets/gameimage/player/boss.png"),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: AnimatedContainer(
-              height:
-              _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
-              duration: _animationDuration,
-              child: Image.asset("assets/gameimage/player/$_pers.png"),
+            Expanded(
+              child: Center(
+                child: Image.asset("assets/gameimage/player/boss.png"),
+              ),
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: AppSize.heroSizeBig,
+                alignment: Alignment.bottomCenter,
+                child: AnimatedContainer(
+                  height:
+                  _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
+                  duration: _animationDuration,
+                  child: Image.asset("assets/gameimage/player/$_pers.png"),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
