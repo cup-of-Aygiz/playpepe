@@ -16,6 +16,7 @@ class AppText {
   static const textStyle = const TextStyle(
     fontWeight: FontWeight.w800,
     color: Colors.deepPurple,
-    fontSize: 20,
+    fontFamily: 'Cramaten',
+    fontSize: 50,
   );
 }

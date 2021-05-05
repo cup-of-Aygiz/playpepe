@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:game_of_pepe/pages/blabla_page.dart';
 import 'package:game_of_pepe/pages/updet_page.dart';
-import 'package:game_of_pepe/ui/config.dart';
 
 import 'fight_page.dart';
 
@@ -13,15 +12,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
   int _currentIndex = 0;
 
   final pages = [
-      FightPage(),
-      UpdetPage(),
+    FightPage(),
+    UpdetPage(),
     BlaBlaPage(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,9 +40,9 @@ class _HomePageState extends State<HomePage> {
             label: "124",
           ),
         ],
-        onTap: (index){
+        onTap: (index) {
           setState(() {
-            _currentIndex=index;
+            _currentIndex = index;
           });
         },
       ),

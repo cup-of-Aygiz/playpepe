@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:game_of_pepe/ui/config.dart';
 
@@ -30,15 +29,17 @@ class _FightPageState extends State<FightPage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (TapDownDetails details) => _damage(details),
-
-      /// TODO: refactor [Stack] to [Column] ✓
       child: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage("assets/gameimage/player/boss.png"),),
+          image: DecorationImage(
+            image: AssetImage("assets/gameimage/player/boss.png"),
+          ),
         ),
         child: Column(
           children: [
-            Container(height: MediaQuery.of(context).padding.top,),
+            Container(
+              height: MediaQuery.of(context).padding.top,
+            ),
             Container(
               alignment: Alignment.center,
               child: Text(
@@ -61,7 +62,7 @@ class _FightPageState extends State<FightPage> {
                 alignment: Alignment.bottomCenter,
                 child: AnimatedContainer(
                   height:
-                  _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
+                      _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
                   duration: _animationDuration,
                   child: Image.asset("assets/gameimage/player/$_pers.png"),
                 ),
