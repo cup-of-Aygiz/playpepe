@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: GestureDetector(
         onTapDown: (TapDownDetails details) => _damage(details),
+        /// TODO: refactor [Stack] to [Column]
         child: Stack(
           children: [
             Container(
