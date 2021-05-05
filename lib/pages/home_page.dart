@@ -1,70 +1,33 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:game_of_pepe/pages/blabla_page.dart';
+import 'package:game_of_pepe/pages/updet_page.dart';
 import 'package:game_of_pepe/ui/config.dart';
+
+import 'fight_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-/// TODO:
-/// надо home page сделать отдельным экраном
-/// а подэкраны отдельными файлами - например fight_sub_page.dart
 class _HomePageState extends State<HomePage> {
-  double _bossDamage = 0;
-  double _damagePlayer = 1;
-  var _pers = "Pers";
 
-  Duration _animationDuration = AppAnimation.animationDuration;
-  TextStyle _styleText = AppText.textStyle;
-  void _damage(TapDownDetails details) {
-    setState(() {
-      _bossDamage += _damagePlayer;
-      _pers = _pers == "Pers" ? "boss" : "Pers";
-    });
-    Future.delayed(_animationDuration, () {
-      setState(() {
-        _pers = _pers == "Pers" ? "boss" : "Pers";
-      });
-    });
-  }
 
+  int _currentIndex = 0;
+
+  final pages = [
+      FightPage(),
+      UpdetPage(),
+    BlaBlaPage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GestureDetector(
-        onTapDown: (TapDownDetails details) => _damage(details),
-
-        /// TODO: refactor [Stack] to [Column] ✓
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                '$_bossDamage',
-                style: _styleText,
-              ),
-              color: Colors.blue,
-            ),
-            Center(
-              child: Image.asset("assets/gameimage/player/boss.png"),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: AnimatedContainer(
-                height:
-                    _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
-                duration: _animationDuration,
-                child: Image.asset("assets/gameimage/player/$_pers.png"),
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.ac_unit),
@@ -79,6 +42,11 @@ class _HomePageState extends State<HomePage> {
             label: "124",
           ),
         ],
+        onTap: (index){
+          setState(() {
+            _currentIndex=index;
+          });
+        },
       ),
     );
   }
