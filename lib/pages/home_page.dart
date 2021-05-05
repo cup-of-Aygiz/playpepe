@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -72,15 +71,15 @@ class _HomePageState extends State<HomePage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.ac_unit),
-            title: Text("124"),
+            label: "124",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.update),
-            title: Text("124"),
+            label: "124",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.aspect_ratio),
-            title: Text("124"),
+            label: "124",
           ),
         ],
       ),
