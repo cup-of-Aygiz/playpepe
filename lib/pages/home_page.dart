@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:game_of_pepe/widgets/barriers.dart';
-import 'package:game_of_pepe/widgets/bird.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,6 +19,13 @@ class _HomePageState extends State<HomePage> {
       pers = pers == "assets/gameimage/player/Pers.png"
           ? "assets/gameimage/player/Persattack.png"
           : "assets/gameimage/player/Pers.png";
+    });
+    Future.delayed(const Duration(milliseconds: 50), () {
+      setState(() {
+        pers = pers == "assets/gameimage/player/Pers.png"
+            ? "assets/gameimage/player/Persattack.png"
+            : "assets/gameimage/player/Pers.png";
+      });
     });
   }
 
