@@ -14,20 +14,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double _bossDamage = 0;
   double _damagePlayer = 1;
-  var _pers = "assets/gameimage/player/Pers.png";
+  var _pers = "Pers";
 
   void _damage(TapDownDetails details) {
     setState(() {
       _bossDamage += _damagePlayer;
-      _pers = _pers == "assets/gameimage/player/Pers.png"
-          ? "assets/gameimage/player/boss.png"
-          : "assets/gameimage/player/Pers.png";
+      _pers = _pers == "Pers" ? "boss" : "Pers";
     });
     Future.delayed(const Duration(milliseconds: 50), () {
       setState(() {
-        _pers = _pers == "assets/gameimage/player/Pers.png"
-            ? "assets/gameimage/player/boss.png"
-            : "assets/gameimage/player/Pers.png";
+        _pers = _pers == "Pers" ? "boss" : "Pers";
       });
     });
   }
@@ -37,6 +33,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: GestureDetector(
         onTapDown: (TapDownDetails details) => _damage(details),
+
         /// TODO: refactor [Stack] to [Column]
         child: Stack(
           children: [
@@ -55,13 +52,14 @@ class _HomePageState extends State<HomePage> {
             Center(
               child: Image.asset("assets/gameimage/player/boss.png"),
             ),
-            AnimatedContainer(
-              duration: Duration(milliseconds: 0),
-              alignment: Alignment(0, 1),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
               child: Container(
                 height: 100,
                 width: 100,
-                child: Image.asset('$_pers'),
+                child: Image.asset("assets/gameimage/player/$_pers.png"),
               ),
             ),
           ],
