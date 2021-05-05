@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:game_of_pepe/ui/config.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   double _damagePlayer = 1;
   var _pers = "Pers";
 
-  Duration _animationDuration = const Duration(milliseconds: 300);
+  Duration _animationDuration = AppAnimation.animationDuration;
 
   void _damage(TapDownDetails details) {
     setState(() {
@@ -42,6 +43,8 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment(0, -0.6),
               child: Text(
                 '$_bossDamage',
+
+                /// TODO: move this text styles
                 style: TextStyle(
                   fontWeight: FontWeight.w800,
                   color: Colors.deepPurple,
@@ -58,7 +61,8 @@ class _HomePageState extends State<HomePage> {
               left: 0,
               right: 0,
               child: AnimatedContainer(
-                height: _pers == "Pers" ? 100 : 120,
+                height:
+                    _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
                 duration: _animationDuration,
                 child: Image.asset("assets/gameimage/player/$_pers.png"),
               ),
