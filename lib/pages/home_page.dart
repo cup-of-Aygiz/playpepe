@@ -11,11 +11,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var _bossDamage = 980;
+  double _bossDamage = 0;
+  double damagePlayer = 1;
+  var pers = "assets/gameimage/player/Pers.png";
 
   void damage(TapDownDetails details) {
     setState(() {
-      _bossDamage = _bossDamage - 30 <= 0 ? 980 : _bossDamage - 30;
+      _bossDamage += damagePlayer;
+      pers = pers == "assets/gameimage/player/Pers.png"
+          ? "assets/gameimage/player/Persattack.png"
+          : "assets/gameimage/player/Pers.png";
     });
   }
 
@@ -28,17 +33,36 @@ class _HomePageState extends State<HomePage> {
             flex: 2,
             child: GestureDetector(
               onTapDown: (TapDownDetails details) => damage(details),
-              child: Container(
-                alignment: Alignment.center,
-                child: Text('$_bossDamage'),
-                color: Colors.blue,
+              child: Stack(
+                children: [
+                  Container(
+                    alignment: Alignment(0, -0.6),
+                    child: Text(
+                      '$_bossDamage',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        color: Colors.deepPurple,
+                        fontSize: 20,
+                      ),
+                    ),
+                    color: Colors.blue,
+                  ),
+                  Center(
+                    child: Image.asset("assets/gameimage/player/boss.png"),
+                  ),
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 0),
+                    alignment: Alignment(0, 1),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      child: Image.asset('$pers'),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          Expanded(
-              child: Container(
-            color: Colors.green,
-          ))
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -48,7 +72,7 @@ class _HomePageState extends State<HomePage> {
             title: Text("124"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.ad_units),
+            icon: Icon(Icons.update),
             title: Text("124"),
           ),
           BottomNavigationBarItem(
