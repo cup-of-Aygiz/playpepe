@@ -59,7 +59,6 @@ class _HomePageState extends State<HomePage> {
               right: 0,
               child: AnimatedContainer(
                 height: _pers == "Pers" ? 100 : 120,
-                width: 100,
                 duration: _animationDuration,
                 child: Image.asset("assets/gameimage/player/$_pers.png"),
               ),
