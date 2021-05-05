@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:game_of_pepe/ui/config.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,21 +13,19 @@ class HomePage extends StatefulWidget {
 /// а подэкраны отдельными файлами - например fight_sub_page.dart
 class _HomePageState extends State<HomePage> {
   double _bossDamage = 0;
-  double damagePlayer = 1;
-  var pers = "assets/gameimage/player/Pers.png";
+  double _damagePlayer = 1;
+  var _pers = "Pers";
 
-  void damage(TapDownDetails details) {
+  Duration _animationDuration = AppAnimation.animationDuration;
+
+  void _damage(TapDownDetails details) {
     setState(() {
-      _bossDamage += damagePlayer;
-      pers = pers == "assets/gameimage/player/Pers.png"
-          ? "assets/gameimage/player/Persattack.png"
-          : "assets/gameimage/player/Pers.png";
+      _bossDamage += _damagePlayer;
+      _pers = _pers == "Pers" ? "boss" : "Pers";
     });
-    Future.delayed(const Duration(milliseconds: 50), () {
+    Future.delayed(_animationDuration, () {
       setState(() {
-        pers = pers == "assets/gameimage/player/Pers.png"
-            ? "assets/gameimage/player/Persattack.png"
-            : "assets/gameimage/player/Pers.png";
+        _pers = _pers == "Pers" ? "boss" : "Pers";
       });
     });
   }
@@ -35,57 +33,56 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: GestureDetector(
-              onTapDown: (TapDownDetails details) => damage(details),
-              child: Stack(
-                children: [
-                  Container(
-                    alignment: Alignment(0, -0.6),
-                    child: Text(
-                      '$_bossDamage',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        color: Colors.deepPurple,
-                        fontSize: 20,
-                      ),
-                    ),
-                    color: Colors.blue,
-                  ),
-                  Center(
-                    child: Image.asset("assets/gameimage/player/boss.png"),
-                  ),
-                  AnimatedContainer(
-                    duration: Duration(milliseconds: 0),
-                    alignment: Alignment(0, 1),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-                      child: Image.asset('$pers'),
-                    ),
-                  ),
-                ],
+      body: GestureDetector(
+        onTapDown: (TapDownDetails details) => _damage(details),
+
+        /// TODO: refactor [Stack] to [Column]
+        child: Stack(
+          children: [
+            Container(
+              alignment: Alignment(0, -0.6),
+              child: Text(
+                '$_bossDamage',
+
+                /// TODO: move this text styles
+                style: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  color: Colors.deepPurple,
+                  fontSize: 20,
+                ),
+              ),
+              color: Colors.blue,
+            ),
+            Center(
+              child: Image.asset("assets/gameimage/player/boss.png"),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: AnimatedContainer(
+                height:
+                    _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
+                duration: _animationDuration,
+                child: Image.asset("assets/gameimage/player/$_pers.png"),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.ac_unit),
-            title: Text("124"),
+            label: "124",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.update),
-            title: Text("124"),
+            label: "124",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.aspect_ratio),
-            title: Text("124"),
+            label: "124",
           ),
         ],
       ),
