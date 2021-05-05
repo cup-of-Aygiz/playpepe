@@ -33,7 +33,9 @@ class _FightPageState extends State<FightPage> {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage("assets/gameimage/location/fon.jpg",),
+            image: AssetImage(
+              "assets/gameimage/location/fon.jpg",
+            ),
           ),
         ),
         child: Column(
@@ -49,21 +51,16 @@ class _FightPageState extends State<FightPage> {
               ),
               color: Colors.blue,
             ),
-            // Expanded(
-            //   child: Center(
-            //     child: Image.asset("assets/gameimage/player/boss.png"),
-            //   ),
-            // ),
-              Container(
-                height: AppSize.heroSizeBig,
-                alignment: Alignment.bottomCenter,
-                child: AnimatedContainer(
-                  height:
-                      _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
-                  duration: _animationDuration,
-                  child: Image.asset("assets/gameimage/player/$_pers.png"),
-                ),
+            Container(
+              height: AppSize.heroSizeBig,
+              alignment: Alignment.bottomCenter,
+              child: AnimatedContainer(
+                height:
+                    _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
+                duration: _animationDuration,
+                child: Image.asset("assets/gameimage/player/$_pers.png"),
               ),
+            ),
           ],
         ),
       ),
