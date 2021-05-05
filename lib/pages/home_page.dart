@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   double _damagePlayer = 1;
   var _pers = "assets/gameimage/player/Pers.png";
 
-  void damage(TapDownDetails details) {
+  void _damage(TapDownDetails details) {
     setState(() {
       _bossDamage += _damagePlayer;
       _pers = _pers == "assets/gameimage/player/Pers.png"
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             flex: 2,
             child: GestureDetector(
-              onTapDown: (TapDownDetails details) => damage(details),
+              onTapDown: (TapDownDetails details) => _damage(details),
               child: Stack(
                 children: [
                   Container(
