@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
               onTapDown: (TapDownDetails details) => damage(details),
               child: Container(
                 alignment: Alignment.center,
-                child: Text('$_bossDamage'),
+                child: Text('$_bossDamage'),//pepe
                 color: Colors.blue,
               ),
             ),
