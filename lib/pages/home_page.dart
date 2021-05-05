@@ -13,19 +13,19 @@ class HomePage extends StatefulWidget {
 /// а подэкраны отдельными файлами - например fight_sub_page.dart
 class _HomePageState extends State<HomePage> {
   double _bossDamage = 0;
-  double damagePlayer = 1;
-  var pers = "assets/gameimage/player/Pers.png";
+  double _damagePlayer = 1;
+  var _pers = "assets/gameimage/player/Pers.png";
 
   void damage(TapDownDetails details) {
     setState(() {
-      _bossDamage += damagePlayer;
-      pers = pers == "assets/gameimage/player/Pers.png"
+      _bossDamage += _damagePlayer;
+      _pers = _pers == "assets/gameimage/player/Pers.png"
           ? "assets/gameimage/player/Persattack.png"
           : "assets/gameimage/player/Pers.png";
     });
     Future.delayed(const Duration(milliseconds: 50), () {
       setState(() {
-        pers = pers == "assets/gameimage/player/Pers.png"
+        _pers = _pers == "assets/gameimage/player/Pers.png"
             ? "assets/gameimage/player/Persattack.png"
             : "assets/gameimage/player/Pers.png";
       });
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       height: 100,
                       width: 100,
-                      child: Image.asset('$pers'),
+                      child: Image.asset('$_pers'),
                     ),
                   ),
                 ],
