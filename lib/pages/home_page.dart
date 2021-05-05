@@ -8,6 +8,9 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+/// TODO:
+/// надо home page сделать отдельным экраном
+/// а подэкраны отдельными файлами - например fight_sub_page.dart
 class _HomePageState extends State<HomePage> {
   double _bossDamage = 0;
   double damagePlayer = 1;
