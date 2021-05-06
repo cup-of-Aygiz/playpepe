@@ -12,8 +12,8 @@ class _FightPageState extends State<FightPage> {
   double _numberOfClicks = 0;
   double _clickPower = 1;
   var _pers = "Pers";
-  Duration _animationDuration = AppAnimation.animationDuration;
-  TextStyle _styleText = AppText.textStyle;
+  static const Duration _animationDuration = AppAnimation.animationDuration;
+  static const TextStyle _styleText = AppText.textStyle;
 
   void _click(TapDownDetails details) {
     setState(() {

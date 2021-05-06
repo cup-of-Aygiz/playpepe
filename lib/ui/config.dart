@@ -15,8 +15,14 @@ class AppAnimation {
 class AppText {
   static const textStyle = const TextStyle(
     fontWeight: FontWeight.w800,
-    color: Colors.deepPurple,
+    color: Colors.deepOrange,
     fontFamily: 'Cramaten',
     fontSize: 50,
+  );
+  static const textStyleToUpdate = const TextStyle(
+    fontWeight: FontWeight.w500,
+    color: Color(0xffFFDB0606),
+    fontFamily: 'Cramaten',
+    fontSize: 25,
   );
 }
