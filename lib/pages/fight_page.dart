@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:game_of_pepe/repository/shared_prefs_repo.dart';
 import 'package:game_of_pepe/ui/config.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FightPage extends StatefulWidget {
   @override
@@ -16,6 +18,7 @@ class _FightPageState extends State<FightPage> {
   void _damage(TapDownDetails details) {
     setState(() {
       _bossDamage += _damagePlayer;
+      SharedPrefsRepo.writeDamage(_bossDamage);
       _pers = _pers == "Pers" ? "boss" : "Pers";
     });
     Future.delayed(_animationDuration, () {
@@ -23,6 +26,17 @@ class _FightPageState extends State<FightPage> {
         _pers = _pers == "Pers" ? "boss" : "Pers";
       });
     });
+  }
+
+  @override
+  void initState() {
+    SharedPrefsRepo.readDamage().then((value) {
+      if (value == null) return;
+      setState(() {
+        _bossDamage = value;
+      });
+    });
+    super.initState();
   }
 
   @override
@@ -50,17 +64,16 @@ class _FightPageState extends State<FightPage> {
                 style: _styleText,
               ),
             ),
-            Container(
-              height: 200,
-            ),
-            Container(
-              height: AppSize.heroSizeBig,
-              alignment: Alignment(0,0),
-              child: AnimatedContainer(
-                height:
-                    _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
-                duration: _animationDuration,
-                child: Image.asset("assets/gameimage/player/$_pers.png"),
+            Expanded(
+              child: Container(
+                height: AppSize.heroSizeBig,
+                alignment: Alignment(0, 0),
+                child: AnimatedContainer(
+                  height:
+                      _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,
+                  duration: _animationDuration,
+                  child: Image.asset("assets/gameimage/player/$_pers.png"),
+                ),
               ),
             ),
           ],
