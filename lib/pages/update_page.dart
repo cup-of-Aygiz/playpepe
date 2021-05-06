@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:game_of_pepe/pages/update_active_page.dart';
+import 'package:game_of_pepe/pages/update_passive_page.dart';
 import 'package:game_of_pepe/ui/config.dart';
 
 class UpdatePage extends StatefulWidget {
@@ -12,9 +14,23 @@ class _UpdatePageState extends State<UpdatePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Update bro"),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.deepPurple,
+          title: const Text("Update bro"),
+          bottom: const TabBar(
+            tabs: <Widget>[
+              Tab(text: "active",),
+              Tab(text: "passive",),
+            ],
+          ),
+        ),
+        body: TabBarView(children: [
+          ActivePage(),
+          PassivePage(),
+        ],),
       ),
     );
   }
