@@ -36,6 +36,11 @@ class _FightPageState extends State<FightPage> {
         _numberOfClicks = value;
       });
     });
+    SharedPrefsRepo.readPowerClick().then((value){
+      setState(() {
+        _clickPower = value!;
+      });
+    });
     super.initState();
   }
 
@@ -74,6 +79,13 @@ class _FightPageState extends State<FightPage> {
                   duration: _animationDuration,
                   child: Image.asset("assets/gameimage/player/$_pers.png"),
                 ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Text(
+                'Сила клика: $_clickPower',
+                style: _styleText,
               ),
             ),
           ],

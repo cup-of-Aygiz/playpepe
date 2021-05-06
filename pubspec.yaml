@@ -56,6 +56,7 @@ flutter:
       - assets/gameimage/player/
       - assets/gameimage/location/
       - assets/gameimage/player/Pers.png
+      - assets/gameimage/icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

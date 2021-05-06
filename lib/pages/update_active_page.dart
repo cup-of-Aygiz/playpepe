@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:game_of_pepe/repository/shared_prefs_repo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ActivePage extends StatefulWidget {
   @override
@@ -7,8 +11,45 @@ class ActivePage extends StatefulWidget {
 }
 
 class _ActivePageState extends State<ActivePage> {
-  void _addDamage(TapDownDetails details) {
+  late double _numberOfClicks;
+  late double _clickPower = 1;
+  late int _numberOfUpdate = 0;
+  late num _costUpdate = 12+10*pow(1.07,_numberOfUpdate);
 
+  void initState() {
+    SharedPrefsRepo.readClick().then((value) {
+      if (value == null) return;
+      setState(() {
+        _numberOfClicks = value;
+      });
+    });
+    SharedPrefsRepo.readPowerClick().then((value) {
+      if (value == null) return _clickPower = 1;
+      setState(() {
+        _clickPower = value;
+      });
+    });
+    SharedPrefsRepo.readUpdateClick().then((value) {
+      if (value == null) return _numberOfUpdate = 0;
+      setState(() {
+        _numberOfUpdate = value;
+        _costUpdate = 12+10*pow(1.07,_numberOfUpdate);
+      });
+    });
+    super.initState();
+  }
+  void _addClick(TapDownDetails details) {
+    if (_numberOfClicks >= (12+10*pow(1.07,_numberOfUpdate)).round()) {
+      setState(() {
+        _numberOfClicks-= (12+10*pow(1.07,_numberOfUpdate)).round();
+        SharedPrefsRepo.writeClick(_numberOfClicks);
+        _clickPower++;
+        SharedPrefsRepo.writePowerClick(_clickPower);
+        _numberOfUpdate++;
+        SharedPrefsRepo.writeUpdateClick(_numberOfUpdate);
+        _costUpdate = 12+10*pow(1.07,_numberOfUpdate);
+      });
+    }
   }
 
   @override
@@ -21,10 +62,21 @@ class _ActivePageState extends State<ActivePage> {
       crossAxisCount: 2,
       children: <Widget>[
         GestureDetector(
-          onTapDown: (TapDownDetails details) => _addDamage(details),
+          onTapDown: (TapDownDetails details) => _addClick(details),
           child: Container(
             padding: const EdgeInsets.all(8),
-            child: const Text("He'd have you all unravel at the"),
+            child: Column(
+              children: [
+                Text("Кло-во улучшений $_numberOfUpdate"),
+                Expanded(
+                  child: Image.asset(
+                    "assets/gameimage/icons/tap.png",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Text("Стоимость улучшения ${_costUpdate.round()}"),
+              ],
+            ),
             color: Colors.teal[100],
           ),
         ),
