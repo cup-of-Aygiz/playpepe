@@ -2,12 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ActivePage extends StatefulWidget {
-
   @override
   _ActivePageState createState() => _ActivePageState();
 }
 
 class _ActivePageState extends State<ActivePage> {
+  void _addDamage(TapDownDetails details) {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return GridView.count(
@@ -17,10 +20,13 @@ class _ActivePageState extends State<ActivePage> {
       mainAxisSpacing: 10,
       crossAxisCount: 2,
       children: <Widget>[
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("He'd have you all unravel at the"),
-          color: Colors.teal[100],
+        GestureDetector(
+          onTapDown: (TapDownDetails details) => _addDamage(details),
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            child: const Text("He'd have you all unravel at the"),
+            color: Colors.teal[100],
+          ),
         ),
         Container(
           padding: const EdgeInsets.all(8),
@@ -48,6 +54,7 @@ class _ActivePageState extends State<ActivePage> {
           color: Colors.teal[600],
         ),
       ],
-    );;
+    );
+    ;
   }
 }

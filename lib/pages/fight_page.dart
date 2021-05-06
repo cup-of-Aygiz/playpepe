@@ -9,16 +9,16 @@ class FightPage extends StatefulWidget {
 }
 
 class _FightPageState extends State<FightPage> {
-  double _bossDamage = 0;
-  double _damagePlayer = 1;
+  double _numberOfClicks = 0;
+  double _clickPower = 1;
   var _pers = "Pers";
   Duration _animationDuration = AppAnimation.animationDuration;
   TextStyle _styleText = AppText.textStyle;
 
-  void _damage(TapDownDetails details) {
+  void _click(TapDownDetails details) {
     setState(() {
-      _bossDamage += _damagePlayer;
-      SharedPrefsRepo.writeDamage(_bossDamage);
+      _numberOfClicks += _clickPower;
+      SharedPrefsRepo.writeClick(_numberOfClicks);
       _pers = _pers == "Pers" ? "boss" : "Pers";
     });
     Future.delayed(_animationDuration, () {
@@ -30,10 +30,10 @@ class _FightPageState extends State<FightPage> {
 
   @override
   void initState() {
-    SharedPrefsRepo.readDamage().then((value) {
+    SharedPrefsRepo.readClick().then((value) {
       if (value == null) return;
       setState(() {
-        _bossDamage = value;
+        _numberOfClicks = value;
       });
     });
     super.initState();
@@ -42,7 +42,7 @@ class _FightPageState extends State<FightPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (TapDownDetails details) => _damage(details),
+      onTapDown: (TapDownDetails details) => _click(details),
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -60,7 +60,7 @@ class _FightPageState extends State<FightPage> {
             Container(
               alignment: Alignment.center,
               child: Text(
-                '$_bossDamage',
+                '$_numberOfClicks',
                 style: _styleText,
               ),
             ),
