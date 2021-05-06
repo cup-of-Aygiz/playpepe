@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:game_of_pepe/pages/shop_page.dart';
-import 'package:game_of_pepe/pages/updet_page.dart';
+import 'package:game_of_pepe/pages/update_page.dart';
 
 import 'fight_page.dart';
 
@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   final pages = [
     FightPage(),
-    UpdetPage(),
+    UpdatePage(),
     ShopPage(),
   ];
 
