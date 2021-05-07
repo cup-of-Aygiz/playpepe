@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:game_of_pepe/widgets/barriers.dart';
-import 'package:game_of_pepe/widgets/bird.dart';
+import 'package:game_of_pepe/pages/shop_page.dart';
+import 'package:game_of_pepe/pages/update_page.dart';
+
+import 'fight_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,51 +12,39 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var _bossDamage = 980;
+  int _currentIndex = 0;
 
-  void damage(TapDownDetails details) {
-    setState(() {
-      _bossDamage = _bossDamage - 30 <= 0 ? 980 : _bossDamage - 30;
-    });
-  }
+  final pages = [
+    FightPage(),
+    UpdatePage(),
+    ShopPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: GestureDetector(
-              onTapDown: (TapDownDetails details) => damage(details),
-              child: Container(
-                alignment: Alignment.center,
-                child: Text('$_bossDamage'),//pepe
-                color: Colors.blue,
-              ),
-            ),
-          ),
-          Expanded(
-              child: Container(
-            color: Colors.green,
-          ))
-        ],
-      ),
+      body: pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.ac_unit),
-            title: Text("124"),
+            label: "124",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.ad_units),
-            title: Text("124"),
+            icon: Icon(Icons.update),
+            label: "124",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.aspect_ratio),
-            title: Text("124"),
+            label: "124",
           ),
         ],
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
     );
   }
