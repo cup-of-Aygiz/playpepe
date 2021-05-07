@@ -15,7 +15,7 @@ class _FightPageState extends State<FightPage> {
   static const Duration _animationDuration = AppAnimation.animationDuration;
   static const TextStyle _styleText = AppText.textStyle;
 
-  void _click(TapDownDetails details) {
+  void _click() {
     setState(() {
       _numberOfClicks += _clickPower;
       SharedPrefsRepo.writeClick(_numberOfClicks);
@@ -36,7 +36,7 @@ class _FightPageState extends State<FightPage> {
         _numberOfClicks = value;
       });
     });
-    SharedPrefsRepo.readPowerClick().then((value){
+    SharedPrefsRepo.readPowerClick().then((value) {
       setState(() {
         _clickPower = value!;
       });
@@ -47,7 +47,7 @@ class _FightPageState extends State<FightPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (TapDownDetails details) => _click(details),
+      onTap: () => _click(),
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -72,7 +72,7 @@ class _FightPageState extends State<FightPage> {
             Expanded(
               child: Container(
                 height: AppSize.heroSizeBig,
-                alignment: Alignment(0, 0),
+                alignment: Alignment.center,
                 child: AnimatedContainer(
                   height:
                       _pers == "Pers" ? AppSize.heroSize : AppSize.heroSizeBig,

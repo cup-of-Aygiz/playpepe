@@ -13,14 +13,17 @@ class UpdatePage extends StatefulWidget {
 class _UpdatePageState extends State<UpdatePage> {
   TextStyle _styleText = AppText.textStyle;
   double _numberOfClicks = 0;
+
   void initState() {
-    SharedPrefsRepo.readClick().then((value) {
+     SharedPrefsRepo.readClick().then((value) {
       if (value == null) return;
       setState(() {
         _numberOfClicks = value;
       });
     });
+     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -28,21 +31,33 @@ class _UpdatePageState extends State<UpdatePage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.deepPurple,
-          title: Text("Update bro",style: _styleText,),
+          title: Text(
+            "Update bro",
+            style: _styleText,
+          ),
           actions: [
-            Text("Кол-во: $_numberOfClicks",style: _styleText,),
+            Text(
+              "Кол-во: $_numberOfClicks",
+              style: _styleText,
+            ),
           ],
           bottom: const TabBar(
             tabs: <Widget>[
-              Tab(text: "active",),
-              Tab(text: "passive",),
+              Tab(
+                text: "active",
+              ),
+              Tab(
+                text: "passive",
+              ),
             ],
           ),
         ),
-        body: TabBarView(children: [
-          ActivePage(),
-          PassivePage(),
-        ],),
+        body: TabBarView(
+          children: [
+            ActivePage(),
+            PassivePage(),
+          ],
+        ),
       ),
     );
   }

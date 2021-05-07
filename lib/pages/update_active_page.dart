@@ -15,9 +15,10 @@ class _ActivePageState extends State<ActivePage> {
   late double _numberOfClicks;
   late double _clickPower = 1;
   late int _numberOfUpdate = 0;
-  late num _costUpdate = 12+10*pow(1.07,_numberOfUpdate);
+  late num _costUpdate = _calculate(_numberOfUpdate);
   static const Duration _animationDuration = AppAnimation.animationDuration;
   TextStyle _styleText = AppText.textStyleToUpdate;
+
   void initState() {
     SharedPrefsRepo.readClick().then((value) {
       if (value == null) return;
@@ -26,30 +27,35 @@ class _ActivePageState extends State<ActivePage> {
       });
     });
     SharedPrefsRepo.readPowerClick().then((value) {
-      if (value == null) return _clickPower = 1;
+      if (value == null) return;
       setState(() {
         _clickPower = value;
       });
     });
     SharedPrefsRepo.readUpdateClick().then((value) {
-      if (value == null) return _numberOfUpdate = 0;
+      if (value == null) return;
       setState(() {
         _numberOfUpdate = value;
-        _costUpdate = 12+10*pow(1.07,_numberOfUpdate);
+        _costUpdate = _calculate(_numberOfUpdate);
       });
     });
     super.initState();
   }
-  void _addClick(TapDownDetails details) {
-    if (_numberOfClicks >= (12+10*pow(1.07,_numberOfUpdate)).round()) {
+
+  num _calculate(int value) {
+    return 12 + 10 * pow(1.07, value);
+  }
+
+  void _addClick() {
+    if (_numberOfClicks >= _calculate(_numberOfUpdate).round()) {
       setState(() {
-        _numberOfClicks-= (12+10*pow(1.07,_numberOfUpdate)).round();
+        _numberOfClicks -= _calculate(_numberOfUpdate).round();
         SharedPrefsRepo.writeClick(_numberOfClicks);
         _clickPower++;
         SharedPrefsRepo.writePowerClick(_clickPower);
         _numberOfUpdate++;
         SharedPrefsRepo.writeUpdateClick(_numberOfUpdate);
-        _costUpdate = 12+10*pow(1.07,_numberOfUpdate);
+        _costUpdate = _calculate(_numberOfUpdate);
       });
     }
   }
@@ -64,12 +70,15 @@ class _ActivePageState extends State<ActivePage> {
       crossAxisCount: 2,
       children: <Widget>[
         GestureDetector(
-          onTapDown: (TapDownDetails details) => _addClick(details),
+          onTap: () => _addClick(),
           child: Container(
             padding: const EdgeInsets.all(8),
             child: Column(
               children: [
-                Text("Кло-во улучшений $_numberOfUpdate",style: _styleText,),
+                Text(
+                  "Кол-во улучшений $_numberOfUpdate",
+                  style: _styleText,
+                ),
                 Expanded(
                   child: AnimatedContainer(
                     //height: AppSize.heroSize : AppSize.heroSizeBig,
@@ -80,7 +89,10 @@ class _ActivePageState extends State<ActivePage> {
                     ),
                   ),
                 ),
-                Text("Стоимость улучшения ${_costUpdate.round()}",style: _styleText,),
+                Text(
+                  "Стоимость улучшения ${_costUpdate.round()}",
+                  style: _styleText,
+                ),
               ],
             ),
             color: Colors.teal[100],

@@ -26,3 +26,4 @@ class AppText {
     fontSize: 25,
   );
 }
+//класс АппПаддинг
