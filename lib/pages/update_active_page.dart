@@ -70,8 +70,16 @@ class _ActivePageState extends State<ActivePage> {
       mainAxisSpacing: 10,
       crossAxisCount: 2,
       children: <Widget>[
-        ActiveUpdateWidget(titleText: "141",costText: "14125",onTap: _addClick,),
-        ActiveUpdateWidget(titleText: "141",costText: "51251",onTap: _addClick,),
+        ActiveUpdateWidget(
+          titleText: _numberOfUpdate,
+          costText: _costUpdate.round(),
+          onTap: _addClick,
+        ),
+        ActiveUpdateWidget(
+          titleText: _numberOfUpdate,
+          costText: _costUpdate.round(),
+          onTap: _addClick,
+        ),
         Container(
           padding: const EdgeInsets.all(8),
           child: const Text('Sound of screams but the'),
@@ -86,6 +94,41 @@ class _ActivePageState extends State<ActivePage> {
           padding: const EdgeInsets.all(8),
           child: const Text('Revolution is coming...'),
           color: Colors.teal[500],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('Revolution, they...'),
+          color: Colors.teal[600],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('Revolution, they...'),
+          color: Colors.teal[600],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('Revolution, they...'),
+          color: Colors.teal[600],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('Revolution, they...'),
+          color: Colors.teal[600],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('Revolution, they...'),
+          color: Colors.teal[600],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('Revolution, they...'),
+          color: Colors.teal[600],
+        ),
+        Container(
+          padding: const EdgeInsets.all(8),
+          child: const Text('Revolution, they...'),
+          color: Colors.teal[600],
         ),
         Container(
           padding: const EdgeInsets.all(8),
