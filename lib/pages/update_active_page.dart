@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:game_of_pepe/repository/shared_prefs_repo.dart';
 import 'package:game_of_pepe/ui/config.dart';
+import 'package:game_of_pepe/widgets/active_update_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ActivePage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _ActivePageState extends State<ActivePage> {
   late int _numberOfUpdate = 0;
   late num _costUpdate = _calculate(_numberOfUpdate);
   static const Duration _animationDuration = AppAnimation.animationDuration;
-  TextStyle _styleText = AppText.textStyleToUpdate;
+  static const TextStyle _styleText = AppText.textStyleToUpdate;
 
   void initState() {
     SharedPrefsRepo.readClick().then((value) {
@@ -69,40 +70,8 @@ class _ActivePageState extends State<ActivePage> {
       mainAxisSpacing: 10,
       crossAxisCount: 2,
       children: <Widget>[
-        GestureDetector(
-          onTap: () => _addClick(),
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              children: [
-                Text(
-                  "Кол-во улучшений $_numberOfUpdate",
-                  style: _styleText,
-                ),
-                Expanded(
-                  child: AnimatedContainer(
-                    //height: AppSize.heroSize : AppSize.heroSizeBig,
-                    duration: _animationDuration,
-                    child: Image.asset(
-                      "assets/gameimage/icons/tap.png",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Text(
-                  "Стоимость улучшения ${_costUpdate.round()}",
-                  style: _styleText,
-                ),
-              ],
-            ),
-            color: Colors.teal[100],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Heed not the rabble'),
-          color: Colors.teal[200],
-        ),
+        ActiveUpdateWidget(titleText: "141",costText: "14125",onTap: _addClick,),
+        ActiveUpdateWidget(titleText: "141",costText: "51251",onTap: _addClick,),
         Container(
           padding: const EdgeInsets.all(8),
           child: const Text('Sound of screams but the'),

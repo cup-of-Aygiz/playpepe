@@ -20,6 +20,7 @@ class SharedPrefsRepo {
     return prefs.getDouble(_powerClick);
   }
 
+//String syv
   static Future<void> writePowerClick(double power) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setDouble(_powerClick, power);
