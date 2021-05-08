@@ -33,7 +33,7 @@ class _ActivePageState extends State<ActivePage> {
         _clickPower = value;
       });
     });
-    SharedPrefsRepo.readUpdateClick().then((value) {
+    SharedPrefsRepo.readUpdateClick('1').then((value) {
       if (value == null) return;
       setState(() {
         _numberOfUpdate = value;
@@ -44,7 +44,7 @@ class _ActivePageState extends State<ActivePage> {
   }
 
   num _calculate(int value) {
-    return 12 + 10 * pow(1.07, value);
+    return 12 + 12 * pow(1.07, value);
   }
 
   void _addClick() {
@@ -55,7 +55,7 @@ class _ActivePageState extends State<ActivePage> {
         _clickPower++;
         SharedPrefsRepo.writePowerClick(_clickPower);
         _numberOfUpdate++;
-        SharedPrefsRepo.writeUpdateClick(_numberOfUpdate);
+        SharedPrefsRepo.writeUpdateClick(_numberOfUpdate,'1');
         _costUpdate = _calculate(_numberOfUpdate);
       });
     }
@@ -74,66 +74,67 @@ class _ActivePageState extends State<ActivePage> {
           titleText: _numberOfUpdate,
           costText: _costUpdate.round(),
           onTap: _addClick,
+          iconImage: "assets/gameimage/icons/first.png",
         ),
         ActiveUpdateWidget(
           titleText: _numberOfUpdate,
           costText: _costUpdate.round(),
           onTap: _addClick,
+          iconImage: "assets/gameimage/icons/second.png",
         ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Sound of screams but the'),
-          color: Colors.teal[300],
+        ActiveUpdateWidget(
+          titleText: _numberOfUpdate,
+          costText: _costUpdate.round(),
+          onTap: _addClick,
+          iconImage: "assets/gameimage/icons/third.png",
         ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Who scream'),
-          color: Colors.teal[400],
+        ActiveUpdateWidget(
+          titleText: _numberOfUpdate,
+          costText: _costUpdate.round(),
+          onTap: _addClick,
+          iconImage: "assets/gameimage/icons/fourth.png",
         ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution is coming...'),
-          color: Colors.teal[500],
+        ActiveUpdateWidget(
+          titleText: _numberOfUpdate,
+          costText: _costUpdate.round(),
+          onTap: _addClick,
+          iconImage: "assets/gameimage/icons/fifth.png",
         ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
+        ActiveUpdateWidget(
+          titleText: _numberOfUpdate,
+          costText: _costUpdate.round(),
+          onTap: _addClick,
+          iconImage: "assets/gameimage/icons/sixth.png",
         ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
+        ActiveUpdateWidget(
+          titleText: _numberOfUpdate,
+          costText: _costUpdate.round(),
+          onTap: _addClick,
+          iconImage: "assets/gameimage/icons/seventh.png",
         ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
+        ActiveUpdateWidget(
+          titleText: _numberOfUpdate,
+          costText: _costUpdate.round(),
+          onTap: _addClick,
+          iconImage: "assets/gameimage/icons/eighth.png",
         ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
+        ActiveUpdateWidget(
+          titleText: _numberOfUpdate,
+          costText: _costUpdate.round(),
+          onTap: _addClick,
+          iconImage: "assets/gameimage/icons/ninth.png",
         ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
+        ActiveUpdateWidget(
+          titleText: _numberOfUpdate,
+          costText: _costUpdate.round(),
+          onTap: _addClick,
+          iconImage: "assets/gameimage/icons/tenth.png",
         ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
+        ActiveUpdateWidget(
+          titleText: _numberOfUpdate,
+          costText: _costUpdate.round(),
+          onTap: _addClick,
+          iconImage: "assets/gameimage/icons/eleventh.png",
         ),
       ],
     );

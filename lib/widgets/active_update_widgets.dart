@@ -8,11 +8,13 @@ class ActiveUpdateWidget extends StatelessWidget {
   final int titleText;
   final num costText;
   final VoidCallback onTap;
+  final String iconImage;
 
   ActiveUpdateWidget({
     required this.titleText,
     required this.costText,
     required this.onTap,
+    required this.iconImage,
   });
 
   @override
@@ -23,7 +25,8 @@ class ActiveUpdateWidget extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: Column(
           children: [
-            Text("Кол-во купленных $titleText",
+            Text(
+              "Кол-во купленных $titleText",
               style: _styleText,
             ),
             Expanded(
@@ -31,7 +34,7 @@ class ActiveUpdateWidget extends StatelessWidget {
                 //height: AppSize.heroSize : AppSize.heroSizeBig,
                 duration: _animationDuration,
                 child: Image.asset(
-                  "assets/gameimage/icons/tap.png",
+                  iconImage,
                   fit: BoxFit.cover,
                 ),
               ),
