@@ -9,13 +9,17 @@ class ActiveUpdateWidget extends StatelessWidget {
   final num costText;
   final VoidCallback onTap;
   final String iconImage;
+  final String numberOfUpdate;
 
   ActiveUpdateWidget({
     required this.titleText,
     required this.costText,
     required this.onTap,
     required this.iconImage,
+    required this.numberOfUpdate,
   });
+
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {

@@ -29,15 +29,15 @@ class _HomePageState extends State<HomePage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.ac_unit),
-            label: "124",
+            label: "click",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.update),
-            label: "124",
+            label: "update",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.aspect_ratio),
-            label: "124",
+            label: "shop",
           ),
         ],
         onTap: (index) {

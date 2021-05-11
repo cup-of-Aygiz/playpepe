@@ -5,7 +5,6 @@ class SharedPrefsRepo {
   static const String _powerClick = "_PowerClickKey";
   static const String _numberOfActiveUpdate = "_numberOfActiveUpdate";
 
-
   static Future<double?> readClick() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getDouble(_clickKey);
@@ -32,7 +31,7 @@ class SharedPrefsRepo {
     return prefs.getInt("$_numberOfActiveUpdate$number");
   }
 
-  static Future<void> writeUpdateClick(int update,String number) async {
+  static Future<void> writeUpdateClick(int update, String number) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt("$_numberOfActiveUpdate$number", update);
   }
