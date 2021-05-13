@@ -91,7 +91,7 @@ class _ActivePageState extends State<ActivePage> {
         _calculate((_numberOfUpdate[number]).round(), number)) {
       setState(() {
         _numberOfClicks -=
-            _calculate((_numberOfUpdate[number]).round(), number);
+            _calculate((_numberOfUpdate[number]).round(), number).toInt();
         SharedPrefsRepo.writeClick(_numberOfClicks);
         _clickPower++;
         SharedPrefsRepo.writePowerClick(_clickPower);
