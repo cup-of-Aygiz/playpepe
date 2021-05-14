@@ -3,23 +3,35 @@ import 'package:game_of_pepe/bloc/updates_state.dart';
 import 'package:game_of_pepe/repository/shared_prefs_repo.dart';
 
 class UpdatesCubit extends Cubit<UpdatesState> {
+  DateTime date = new DateTime.now();
   UpdatesCubit()
       : super(UpdatesState(
-          numberOfClicks: 0,
+          numberOfUpdate: [0, 0, 0, 0, 0, 0, 0, 0, 0],
         )) {
-    SharedPrefsRepo.readClick().then((value) {
-      if (value == null) return;
-      emit(UpdatesState(
-        numberOfClicks: value,
-      ));
-    });
+    print("UpdatesCubit $date");
+
+    for (int i = 0; i < state.numberOfUpdate.length; i++) {
+      SharedPrefsRepo.readUpdateClick(i.toString()).then((value) {
+        if (value == null) return;
+        List<int> newList = List.from(state.numberOfUpdate);
+        //print(newList);
+        //print(value);
+        newList[i] = value;
+        emit(UpdatesState(
+          numberOfUpdate: newList,
+        ));
+      });
+    }
   }
 
-  void onClick(double clickPower) {
-    double click = state.numberOfClicks + clickPower;
+  void onUpdate(int number) {
+    print("UpdatesCubit onUpdate $date");
+    List<int> newList = List.from(state.numberOfUpdate);
+    newList[number]++;
+    print(newList);
     emit(UpdatesState(
-      numberOfClicks: click,
+      numberOfUpdate: newList,
     ));
-    SharedPrefsRepo.writeClick(click);
+    SharedPrefsRepo.writeUpdateClick(newList[number], number.toString());
   }
 }

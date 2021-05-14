@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:game_of_pepe/bloc/updates_bloc.dart';
-import 'package:game_of_pepe/bloc/updates_state.dart';
+import 'package:game_of_pepe/bloc/clikcks_number_bloc.dart';
+import 'package:game_of_pepe/bloc/clicks_number_state.dart';
 import 'package:game_of_pepe/pages/update_active_page.dart';
 import 'package:game_of_pepe/pages/update_passive_page.dart';
 import 'package:game_of_pepe/repository/shared_prefs_repo.dart';
@@ -18,8 +18,8 @@ class _UpdatePageState extends State<UpdatePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UpdatesCubit,UpdatesState>(
-      builder: (context, UpdatesState state) => DefaultTabController(
+    return BlocBuilder<ClicksNumberCubit,ClicksNumberState>(
+      builder: (context, ClicksNumberState state) => DefaultTabController(
         length: 2,
         child: Scaffold(
           appBar: AppBar(

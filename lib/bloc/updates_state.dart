@@ -1,7 +1,7 @@
 class UpdatesState {
-  final double numberOfClicks;
+  final List<int> numberOfUpdate;
 
   UpdatesState({
-    required this.numberOfClicks,
+    required  this.numberOfUpdate,
   });
 }
