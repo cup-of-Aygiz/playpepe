@@ -12,12 +12,13 @@ class ActiveUpdateWidget extends StatelessWidget {
   final String numberOfUpdate;
 
   ActiveUpdateWidget({
+    required Key key,
     required this.titleText,
     required this.costText,
     required this.onTap,
     required this.iconImage,
     required this.numberOfUpdate,
-  });
+  }) : super(key: key);
 
   void initState() {}
 

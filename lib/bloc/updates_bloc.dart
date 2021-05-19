@@ -14,8 +14,6 @@ class UpdatesCubit extends Cubit<UpdatesState> {
       SharedPrefsRepo.readUpdateClick(i.toString()).then((value) {
         if (value == null) return;
         List<int> newList = List.from(state.numberOfUpdate);
-        //print(newList);
-        //print(value);
         newList[i] = value;
         emit(UpdatesState(
           numberOfUpdate: newList,
