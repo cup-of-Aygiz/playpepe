@@ -5,15 +5,19 @@ import 'package:game_of_pepe/bloc/clicks_number_state.dart';
 import 'package:game_of_pepe/bloc/updates_bloc.dart';
 import 'package:game_of_pepe/repository/shared_prefs_repo.dart';
 
+import 'cost_bloc.dart';
+
 class ClicksNumberCubit extends Cubit<ClicksNumberState> {
   late final UpdatesCubit updatesCubit;
+  late final CostCubit costCubit;
   DateTime date = new DateTime.now();
 
-  ClicksNumberCubit(UpdatesCubit u)
+  ClicksNumberCubit(UpdatesCubit update,CostCubit cost)
       : super(ClicksNumberState(
           numberOfClicks: 0,
         )) {
-    updatesCubit = u;
+    updatesCubit = update;
+    costCubit = cost;
     SharedPrefsRepo.readClick().then((value) {
       if (value == null) return;
       emit(ClicksNumberState(
@@ -24,6 +28,7 @@ class ClicksNumberCubit extends Cubit<ClicksNumberState> {
   }
 
   List<int> get _numberOfUpdate => updatesCubit.state.numberOfUpdate;
+  List<int> get _costUpdate => costCubit.state.numberOfCost;
 
   int _calculate(int value, int number) {
     num power = pow(12, number);
@@ -31,17 +36,6 @@ class ClicksNumberCubit extends Cubit<ClicksNumberState> {
   }
 
   late int _clickPower;
-  late List<int> _costUpdate = [
-    _calculate(_numberOfUpdate[0], 1),
-    _calculate(_numberOfUpdate[1], 1),
-    _calculate(_numberOfUpdate[2], 2),
-    _calculate(_numberOfUpdate[3], 3),
-    _calculate(_numberOfUpdate[4], 4),
-    _calculate(_numberOfUpdate[5], 5),
-    _calculate(_numberOfUpdate[6], 6),
-    _calculate(_numberOfUpdate[7], 7),
-    _calculate(_numberOfUpdate[8], 8)
-  ];
 
   void onClick(int clickPower) {
     int click = (state.numberOfClicks + clickPower).toInt();
@@ -55,9 +49,8 @@ class ClicksNumberCubit extends Cubit<ClicksNumberState> {
     SharedPrefsRepo.readPowerClick().then((value) {
       if (value != null) _clickPower = value;
     });
-    int cal = _calculate((_numberOfUpdate[number]).round(), number).toInt();
-    if (state.numberOfClicks >= cal) {
-      int click = (state.numberOfClicks - cal);
+    if (state.numberOfClicks >= _costUpdate[number]) {
+      int click = (state.numberOfClicks - _costUpdate[number]);
       // _clickPower += pow(10, number).toInt();
       // SharedPrefsRepo.writePowerClick(_clickPower);
       updatesCubit.onUpdate(number);
