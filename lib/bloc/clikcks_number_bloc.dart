@@ -5,19 +5,15 @@ import 'package:game_of_pepe/bloc/clicks_number_state.dart';
 import 'package:game_of_pepe/bloc/updates_bloc.dart';
 import 'package:game_of_pepe/repository/shared_prefs_repo.dart';
 
-import 'cost_bloc.dart';
-
 class ClicksNumberCubit extends Cubit<ClicksNumberState> {
   late final UpdatesCubit updatesCubit;
-  late final CostCubit costCubit;
   DateTime date = new DateTime.now();
 
-  ClicksNumberCubit(UpdatesCubit update,CostCubit cost)
+  ClicksNumberCubit(UpdatesCubit update)
       : super(ClicksNumberState(
           numberOfClicks: 0,
         )) {
     updatesCubit = update;
-    costCubit = cost;
     SharedPrefsRepo.readClick().then((value) {
       if (value == null) return;
       emit(ClicksNumberState(
@@ -27,15 +23,7 @@ class ClicksNumberCubit extends Cubit<ClicksNumberState> {
     print(date);
   }
 
-  List<int> get _numberOfUpdate => updatesCubit.state.numberOfUpdate;
-  List<int> get _costUpdate => costCubit.state.numberOfCost;
-
-  int _calculate(int value, int number) {
-    num power = pow(12, number);
-    return (power + power * pow(1.07, value)).toInt();
-  }
-
-  late int _clickPower = 1;
+  late int _clickPower = 100;
 
   void onClick(int clickPower) {
     int click = (state.numberOfClicks + clickPower).toInt();
@@ -49,12 +37,15 @@ class ClicksNumberCubit extends Cubit<ClicksNumberState> {
     SharedPrefsRepo.readPowerClick().then((value) {
       if (value != null) _clickPower = value;
     });
-    if (state.numberOfClicks >= _costUpdate[number]) {
-      int click = (state.numberOfClicks - _costUpdate[number]);
+    if (state.numberOfClicks >= updatesCubit.state.numberOfCost[number]) {
+      int click =
+          (state.numberOfClicks - updatesCubit.state.numberOfCost[number]);
       _clickPower += pow(10, number).toInt();
-       SharedPrefsRepo.writePowerClick(_clickPower);
-       updatesCubit.onUpdate(number);
-      _costUpdate[number] = _calculate(_numberOfUpdate[number], number);
+      SharedPrefsRepo.writePowerClick(_clickPower);
+      updatesCubit.onUpdate(number);
+      //_costUpdate[number] = _calculate(_numberOfUpdate[number], number)
+      //print("number of udpaetqwwqtqwfqd${_numberOfUpdate}");
+      //print("number of udpaetqwwqtqwfqd${_numberOfUpdate[number]}");
       emit(ClicksNumberState(
         numberOfClicks: click,
       ));
