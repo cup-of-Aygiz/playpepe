@@ -35,7 +35,7 @@ class ClicksNumberCubit extends Cubit<ClicksNumberState> {
     return (power + power * pow(1.07, value)).toInt();
   }
 
-  late int _clickPower;
+  late int _clickPower = 1;
 
   void onClick(int clickPower) {
     int click = (state.numberOfClicks + clickPower).toInt();
@@ -51,9 +51,9 @@ class ClicksNumberCubit extends Cubit<ClicksNumberState> {
     });
     if (state.numberOfClicks >= _costUpdate[number]) {
       int click = (state.numberOfClicks - _costUpdate[number]);
-      // _clickPower += pow(10, number).toInt();
-      // SharedPrefsRepo.writePowerClick(_clickPower);
-      updatesCubit.onUpdate(number);
+      _clickPower += pow(10, number).toInt();
+       SharedPrefsRepo.writePowerClick(_clickPower);
+       updatesCubit.onUpdate(number);
       _costUpdate[number] = _calculate(_numberOfUpdate[number], number);
       emit(ClicksNumberState(
         numberOfClicks: click,

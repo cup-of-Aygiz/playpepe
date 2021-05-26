@@ -21,8 +21,6 @@ class ActivePage extends StatefulWidget {
 }
 
 class _ActivePageState extends State<ActivePage> {
-  late int _clickPower = 1;
-  late List<int> _numberOfUpdate = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   static const Duration _animationDuration = AppAnimation.animationDuration;
   static const TextStyle _styleText = AppText.textStyleToUpdate;
 
