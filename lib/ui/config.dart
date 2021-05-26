@@ -26,4 +26,17 @@ class AppText {
     fontSize: 25,
   );
 }
+
+class Decorations {
+  static const boxDecoration1 = const BoxDecoration(
+      gradient: LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: <Color>[
+      Color(0xff0c7bb3),
+      Color(0xfff2bae8),
+    ],
+    tileMode: TileMode.repeated,
+  ));
+}
 //класс АппПаддинг
