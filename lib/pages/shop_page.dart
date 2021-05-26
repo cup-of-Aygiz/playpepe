@@ -14,7 +14,7 @@ class _ShopPageState extends State<ShopPage> {
       padding: const EdgeInsets.all(20),
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
-      crossAxisCount: 2,
+      crossAxisCount: 1,
       children: <Widget>[
         Container(
           padding: const EdgeInsets.all(8),

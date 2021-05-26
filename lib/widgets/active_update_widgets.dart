@@ -5,15 +5,22 @@ import 'package:game_of_pepe/ui/config.dart';
 class ActiveUpdateWidget extends StatelessWidget {
   static const Duration _animationDuration = AppAnimation.animationDuration;
   static const TextStyle _styleText = AppText.textStyleToUpdate;
-  final String titleText;
-  final String costText;
+  final int titleText;
+  final num costText;
   final VoidCallback onTap;
+  final String iconImage;
+  final String numberOfUpdate;
 
   ActiveUpdateWidget({
+    required Key key,
     required this.titleText,
     required this.costText,
     required this.onTap,
-  });
+    required this.iconImage,
+    required this.numberOfUpdate,
+  }) : super(key: key);
+
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,7 @@ class ActiveUpdateWidget extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              titleText,
+              "Кол-во купленных $titleText",
               style: _styleText,
             ),
             Expanded(
@@ -32,18 +39,18 @@ class ActiveUpdateWidget extends StatelessWidget {
                 //height: AppSize.heroSize : AppSize.heroSizeBig,
                 duration: _animationDuration,
                 child: Image.asset(
-                  "assets/gameimage/icons/tap.png",
+                  iconImage,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             Text(
-              costText,
+              "Стоимость $costText",
               style: _styleText,
             ),
           ],
         ),
-        color: Colors.teal[100],
+        //color: Colors.teal[100],
       ),
     );
   }

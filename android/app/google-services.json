@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1028239803444",
+    "project_id": "pepelend81",
+    "storage_bucket": "pepelend81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028239803444:android:5ce6634460425ab1c27661",
+        "android_client_info": {
+          "package_name": "com.example.game_of_pepe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1028239803444-6375uhflvaf4odhajbt4f6r3a0mo1dc4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMUiJ3yHar7vyzzxAIFHTZecON6eUAdkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1028239803444-6375uhflvaf4odhajbt4f6r3a0mo1dc4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
