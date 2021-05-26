@@ -19,11 +19,24 @@ class _HomePageState extends State<HomePage> {
     UpdatePage(),
     ShopPage(),
   ];
-
+  final PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[_currentIndex],
+      //body: pages[_currentIndex],
+      body:PageView(
+        controller: _pageController,
+        children: <Widget>[
+          FightPage(),
+          UpdatePage(),
+          ShopPage(),
+        ],
+        onPageChanged: (page) {
+          setState(() {
+            _currentIndex = page;
+          });
+        },
+      ),
       //bottomNavigationBar: _getNavBar(context),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -41,89 +54,14 @@ class _HomePageState extends State<HomePage> {
             label: "shop",
           ),
         ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+        onTap: _onTappedBar,
       ),
     );
   }
-
-  _getNavBar(context) {
-    return Stack(
-      children: [
-        Positioned(
-            child: ClipPath(
-                clipper: NavBarClipper(),
-                child: Container(
-                  height: 60,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                        Color(0xffacc0fe),
-                        Color(0xff4b086d), //eae5c9
-                        //6cc6cb
-                      ])),
-                ))),
-        Positioned(
-          bottom: 45,
-          width: MediaQuery.of(context).size.width,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              _buildNavItem(Icons.bubble_chart,false),
-              SizedBox(
-                width: 1,
-              ),
-              _buildNavItem(Icons.bubble_chart,false),
-              SizedBox(
-                width: 1,
-              ),
-              _buildNavItem(Icons.bubble_chart,false),
-            ],
-          ),
-        )
-      ],
-    );
+  void _onTappedBar(int value) {
+    setState(() {
+      _currentIndex = value;
+    });
+    _pageController.jumpToPage(value);
   }
-}
-
-_buildNavItem(IconData icon, bool active) {
-  return CircleAvatar(
-    radius: 30,
-    backgroundColor: Color(0xff4b086d),
-    child: CircleAvatar(
-      radius: 25,
-      backgroundColor: active? Color(0xccacc0fe) : Colors.transparent,
-      child: Icon(icon,color: Colors.black,),
-    ),
-  );
-}
-
-class NavBarClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    var sw = size.width;
-    var sh = size.height;
-    path.cubicTo(sw / 12, 0, sw / 12, 2 * sh / 5, 2 * sw / 12, 2 * sh / 5);
-    path.cubicTo(3 * sw / 12, 2 * sh / 5, 3 * sw / 12, 0, 4 * sw / 12, 0);
-    path.cubicTo(
-        5 * sw / 12, 0, 5 * sw / 12, 2 * sh / 5, 6 * sw / 12, 2 * sh / 5);
-    path.cubicTo(7 * sw / 12, 2 * sh / 5, 7 * sw / 12, 0, 8 * sw / 12, 0);
-    path.cubicTo(
-        9 * sw / 12, 0, 9 * sw / 12, 2 * sh / 5, 10 * sw / 12, 2 * sh / 5);
-    path.cubicTo(11 * sw / 12, 2 * sh / 5, 11 * sw / 12, 0, sw, 0);
-    path.lineTo(sw, sh);
-    path.lineTo(0, sh);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }

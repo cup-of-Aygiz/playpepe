@@ -23,7 +23,7 @@ class ClicksNumberCubit extends Cubit<ClicksNumberState> {
     print(date);
   }
 
-  late int _clickPower = 100;
+  late int _clickPower = 1;
 
   void onClick(int clickPower) {
     int click = (state.numberOfClicks + clickPower).toInt();

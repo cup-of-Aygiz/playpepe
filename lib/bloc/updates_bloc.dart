@@ -21,12 +21,12 @@ class UpdatesCubit extends Cubit<UpdatesState> {
     List<int> _newListCost = List.from(state.numberOfCost);
     for (int i = 0; i < state.numberOfUpdate.length; i++) {
       var updateClick = await SharedPrefsRepo.readUpdateClick(i.toString());
-      print("я вызвал функцию readUpdateClick с параметрами: $i, резульат: ${updateClick}");
+      //print("я вызвал функцию readUpdateClick с параметрами: $i, резульат: ${updateClick}");
       if (updateClick != null) {
         _newList[i] = updateClick;
       }
       var costClick = await SharedPrefsRepo.readCostNumber(i.toString());
-      print("я вызвал функцию readCostNumber с параметрами: $i, резульат: ${costClick}");
+      //print("я вызвал функцию readCostNumber с параметрами: $i, резульат: ${costClick}");
       if (costClick != null) {
         _newListCost[i] = costClick;
       }
@@ -52,8 +52,8 @@ class UpdatesCubit extends Cubit<UpdatesState> {
       numberOfCost: _newListCost,
     ));
     SharedPrefsRepo.writeUpdateClick(_newList[number], number.toString());
-    print("я вызвал функцию writeUpdateClick с параметрами: $number, резульат: ${_newList}");
+    //print("я вызвал функцию writeUpdateClick с параметрами: $number, резульат: ${_newList}");
     SharedPrefsRepo.writeCostNumber(_newListCost[number], number.toString());
-    print("я вызвал функцию writeCostNumber с параметрами: $number, резульат: ${_newListCost}");
+    //print("я вызвал функцию writeCostNumber с параметрами: $number, резульат: ${_newListCost}");
   }
 }
