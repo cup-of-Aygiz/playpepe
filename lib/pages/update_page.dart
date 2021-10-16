@@ -5,7 +5,6 @@ import 'package:game_of_pepe/bloc/clikcks_number_bloc.dart';
 import 'package:game_of_pepe/bloc/clicks_number_state.dart';
 import 'package:game_of_pepe/pages/update_active_page.dart';
 import 'package:game_of_pepe/pages/update_passive_page.dart';
-import 'package:game_of_pepe/repository/shared_prefs_repo.dart';
 import 'package:game_of_pepe/ui/config.dart';
 
 class UpdatePage extends StatefulWidget {
@@ -15,15 +14,18 @@ class UpdatePage extends StatefulWidget {
 
 class _UpdatePageState extends State<UpdatePage> {
   TextStyle _styleText = AppText.textStyle;
-
+  Decoration _dec = Decorations.boxDecoration1;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ClicksNumberCubit,ClicksNumberState>(
+    return BlocBuilder<ClicksNumberCubit, ClicksNumberState>(
       builder: (context, ClicksNumberState state) => DefaultTabController(
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.deepPurple,
+            flexibleSpace: Container(
+              decoration: _dec,
+            ),
+            backgroundColor: Colors.transparent,
             title: Text(
               "Update bro",
               style: _styleText,

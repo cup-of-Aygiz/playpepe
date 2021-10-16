@@ -4,7 +4,7 @@ class SharedPrefsRepo {
   static const String _clickKey = "_ClickKey";
   static const String _powerClick = "_PowerClickKey";
   static const String _numberOfActiveUpdate = "_numberOfActiveUpdate";
-  static const String _costToUpdate = "_numberOfActiveUpdate";
+  static const String _costToUpdate = "_costToUpdate";
 
   static Future<int?> readClick() async {
     //кол-во кликов
@@ -30,7 +30,7 @@ class SharedPrefsRepo {
   }
 
   static Future<int?> readUpdateClick(String number) async {
-    //кол-во обдейтов
+    //кол-во update
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getInt("$_numberOfActiveUpdate$number");
   }
